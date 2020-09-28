@@ -10,6 +10,12 @@ package Personas;
  * 
  * @author Joel Enriquez
  */
-public class Administrador {
-
+public class Administrador extends Persona{
+    
+    public Administrador(String codigo, String nombre, String DPI, String contraseña) {
+        super(codigo, nombre, DPI, contraseña);
+    }
+    
+    
+    
 }

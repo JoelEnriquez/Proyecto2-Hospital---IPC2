@@ -6,10 +6,49 @@
 
 package Personas;
 
+import java.sql.Date;
+
 /**
  * 
  * @author Joel Enriquez
  */
-public class Laboratorista {
+public class Laboratorista extends Persona {
+
+    private Date fechaInicioHospital;
+    private String codigoTipoExamen;
+    private String registroSalud;
+
+    public Laboratorista(Date fechaInicioHospital, String codigoTipoExamen,
+            String registroSalud,String codigo, String nombre, String DPI,
+            String contraseña, String telefono, String correoElectronico) {
+        super(codigo, nombre, DPI, contraseña, telefono, correoElectronico);
+        this.fechaInicioHospital = fechaInicioHospital;
+        this.codigoTipoExamen = codigoTipoExamen;
+        this.registroSalud = registroSalud;
+    }
+
+    public Date getFechaInicioHospital() {
+        return fechaInicioHospital;
+    }
+
+    public void setFechaInicioHospital(Date fechaInicioHospital) {
+        this.fechaInicioHospital = fechaInicioHospital;
+    }
+
+    public String getCodigoTipoExamen() {
+        return codigoTipoExamen;
+    }
+
+    public void setCodigoTipoExamen(String codigoTipoExamen) {
+        this.codigoTipoExamen = codigoTipoExamen;
+    }
+
+    public String getRegistroSalud() {
+        return registroSalud;
+    }
+
+    public void setRegistroSalud(String registroSalud) {
+        this.registroSalud = registroSalud;
+    }
 
 }
