@@ -29,7 +29,9 @@ public class Paciente extends Persona {
         this.tipoSangre = tipoSangre;
     }
 
-    public Paciente(String sexo, Date fechaNacimiento, String peso, String tipoSangre, String nombre, String DPI, String contraseña, String telefono, String correoElectronico) {
+    public Paciente(String sexo, Date fechaNacimiento, String peso, String tipoSangre,
+            String nombre, String DPI, String contraseña,
+            String telefono, String correoElectronico) {
         super(nombre, DPI, contraseña, telefono, correoElectronico);
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;

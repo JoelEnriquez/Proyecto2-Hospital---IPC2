@@ -15,10 +15,10 @@ import java.sql.Date;
 public class Laboratorista extends Persona {
 
     private Date fechaInicioHospital;
-    private String codigoTipoExamen;
+    private int codigoTipoExamen;
     private String registroSalud;
 
-    public Laboratorista(Date fechaInicioHospital, String codigoTipoExamen,
+    public Laboratorista(Date fechaInicioHospital, int codigoTipoExamen,
             String registroSalud,String codigo, String nombre, String DPI,
             String contraseña, String telefono, String correoElectronico) {
         super(codigo, nombre, DPI, contraseña, telefono, correoElectronico);
@@ -35,11 +35,11 @@ public class Laboratorista extends Persona {
         this.fechaInicioHospital = fechaInicioHospital;
     }
 
-    public String getCodigoTipoExamen() {
+    public int getCodigoTipoExamen() {
         return codigoTipoExamen;
     }
 
-    public void setCodigoTipoExamen(String codigoTipoExamen) {
+    public void setCodigoTipoExamen(int codigoTipoExamen) {
         this.codigoTipoExamen = codigoTipoExamen;
     }
 

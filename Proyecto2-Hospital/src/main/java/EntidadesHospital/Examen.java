@@ -13,39 +13,51 @@ import java.sql.Time;
  * 
  * @author Joel Enriquez
  */
-public class CitaExamen {
-    String id;
-    Date fechaCita;
-    Time horaCita;
-    String codigoPaciente;
-    String codigoMedico;
-    String codigoTipoExamen;
+public class Examen {
+    private int codigo;
+    private Date fechaCita;
+    private Time horaCita;
+    private boolean requiereOrden;
+    private String codigoPaciente;
+    private String codigoMedico;
+    private String codigoTipoExamen;
 
-    public CitaExamen(Date fechaCita, Time horaCita, String codigoPaciente,
+    public Examen(Date fechaCita, Time horaCita, boolean requiereOrden, String codigoPaciente,
             String codigoMedico, String codigoTipoExamen) {
         this.fechaCita = fechaCita;
         this.horaCita = horaCita;
+        this.requiereOrden = requiereOrden;
         this.codigoPaciente = codigoPaciente;
         this.codigoMedico = codigoMedico;
         this.codigoTipoExamen = codigoTipoExamen;
     }
 
-    public CitaExamen(String id, Date fechaCita, Time horaCita,
+    public Examen(int codigo, Date fechaCita, Time horaCita, boolean requiereOrden,
             String codigoPaciente, String codigoMedico, String codigoTipoExamen) {
-        this.id = id;
+        this.codigo = codigo;
         this.fechaCita = fechaCita;
         this.horaCita = horaCita;
+        this.requiereOrden = requiereOrden;
         this.codigoPaciente = codigoPaciente;
         this.codigoMedico = codigoMedico;
         this.codigoTipoExamen = codigoTipoExamen;
     }
 
-    public String getId() {
-        return id;
+    
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public boolean getRequiereOrden() {
+        return requiereOrden;
+    }
+
+    public void setRequiereOrden(boolean requiereOrden) {
+        this.requiereOrden = requiereOrden;
     }
 
     public Date getFechaCita() {

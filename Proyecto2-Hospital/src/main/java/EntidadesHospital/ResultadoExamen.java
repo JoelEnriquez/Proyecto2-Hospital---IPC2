@@ -22,11 +22,12 @@ public class ResultadoExamen {
     private Date fechaExamen;
     private String codigoPaciente;
     private String codigoMedico;
-    private String idExamenLab;
+    private String codigoLaboratorista;
+    private int codigoExamen;
 
     public ResultadoExamen(String codigo, InputStream orden, InputStream informe,
             Time horaExamen, Date fechaExamen, String codigoPaciente,
-            String codigoMedico, String idExamenLab) {
+            String codigoMedico, String codigoLaboratorista, int codigoExamen) {
         this.codigo = codigo;
         this.orden = orden;
         this.informe = informe;
@@ -34,19 +35,21 @@ public class ResultadoExamen {
         this.fechaExamen = fechaExamen;
         this.codigoPaciente = codigoPaciente;
         this.codigoMedico = codigoMedico;
-        this.idExamenLab = idExamenLab;
+        this.codigoLaboratorista = codigoLaboratorista;
+        this.codigoExamen = codigoExamen;
     }
     
     public ResultadoExamen(InputStream orden, InputStream informe,
             Time horaExamen, Date fechaExamen, String codigoPaciente,
-            String codigoMedico, String idExamenLab) {
+            String codigoMedico, String codigoLaboratorista, int codigoExamen) {
         this.orden = orden;
         this.informe = informe;
         this.horaExamen = horaExamen;
         this.fechaExamen = fechaExamen;
         this.codigoPaciente = codigoPaciente;
         this.codigoMedico = codigoMedico;
-        this.idExamenLab = idExamenLab;
+        this.codigoLaboratorista = codigoLaboratorista;
+        this.codigoExamen = codigoExamen;
     }
 
     public String getCodigo() {
@@ -105,12 +108,20 @@ public class ResultadoExamen {
         this.codigoMedico = codigoMedico;
     }
 
-    public String getIdExamenLab() {
-        return idExamenLab;
+    public int getCodigoExamen() {
+        return codigoExamen;
     }
 
-    public void setIdExamenLab(String idExamenLab) {
-        this.idExamenLab = idExamenLab;
+    public void setCodigoExamen(int codigoExamen) {
+        this.codigoExamen = codigoExamen;
+    }
+
+    public String getCodigoLaboratorista() {
+        return codigoLaboratorista;
+    }
+
+    public void setCodigoLaboratorista(String codigoLaboratorista) {
+        this.codigoLaboratorista = codigoLaboratorista;
     }
     
     

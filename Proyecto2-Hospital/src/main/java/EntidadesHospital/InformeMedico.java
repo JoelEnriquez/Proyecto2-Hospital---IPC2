@@ -20,29 +20,29 @@ public class InformeMedico {
     private String descripcionInforme;
     private String codigoPaciente;
     private String codigoMedico;
-    private String idConsulta;
+    private String codigoCitaMedico;
 
     public InformeMedico(Date fechaInforme, Time horaInforme,
             String descripcionInforme, String codigoPaciente,
-            String codigoMedico, String idConsulta) {
+            String codigoMedico, String codigoCitaMedico) {
         this.fechaInforme = fechaInforme;
         this.horaInforme = horaInforme;
         this.descripcionInforme = descripcionInforme;
         this.codigoPaciente = codigoPaciente;
         this.codigoMedico = codigoMedico;
-        this.idConsulta = idConsulta;
+        this.codigoCitaMedico = codigoCitaMedico;
     }
 
     public InformeMedico(String codigo, Date fechaInforme, Time horaInforme,
             String descripcionInforme, String codigoPaciente,
-            String codigoMedico, String idConsulta) {
+            String codigoMedico, String codigoCitaMedico) {
         this.codigo = codigo;
         this.fechaInforme = fechaInforme;
         this.horaInforme = horaInforme;
         this.descripcionInforme = descripcionInforme;
         this.codigoPaciente = codigoPaciente;
         this.codigoMedico = codigoMedico;
-        this.idConsulta = idConsulta;
+        this.codigoCitaMedico = codigoCitaMedico;
     }
 
     public String getCodigo() {
@@ -93,12 +93,12 @@ public class InformeMedico {
         this.codigoMedico = codigoMedico;
     }
 
-    public String getIdConsulta() {
-        return idConsulta;
+    public String getCodigoCitaMedico() {
+        return codigoCitaMedico;
     }
 
-    public void setIdConsulta(String idConsulta) {
-        this.idConsulta = idConsulta;
+    public void setCodigoCitaMedico(String codigoCitaMedico) {
+        this.codigoCitaMedico = codigoCitaMedico;
     }
     
     

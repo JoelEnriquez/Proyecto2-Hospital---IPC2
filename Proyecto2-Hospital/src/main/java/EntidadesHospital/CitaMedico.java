@@ -17,33 +17,44 @@ public class CitaMedico {
     private String codigo;
     private String codigoPaciente;
     private String codigoMedico;
-    private String especialiadesDoctor;
+    private String nombreEspecialidad;
+    private String idEspecialidad;
+    private double costoConsulta;
     private Date fechaCita;
     private Time horaCita;
-    private String idEspecialidad;
+
+    public CitaMedico(String codigoPaciente, String codigoMedico, String nombreEspecialidad,
+            String idEspecialidad, double costoConsulta, Date fechaCita, Time horaCita) {
+        this.codigoPaciente = codigoPaciente;
+        this.codigoMedico = codigoMedico;
+        this.nombreEspecialidad = nombreEspecialidad;
+        this.idEspecialidad = idEspecialidad;
+        this.costoConsulta = costoConsulta;
+        this.fechaCita = fechaCita;
+        this.horaCita = horaCita;
+    }
 
     public CitaMedico(String codigo, String codigoPaciente, String codigoMedico,
-            String especialiadesDoctor, Date fechaCita, Time horaCita, String idEspecialidad) {
+            String nombreEspecialidad, String idEspecialidad, double costoConsulta,
+            Date fechaCita, Time horaCita) {
         this.codigo = codigo;
         this.codigoPaciente = codigoPaciente;
         this.codigoMedico = codigoMedico;
-        this.especialiadesDoctor = especialiadesDoctor;
+        this.nombreEspecialidad = nombreEspecialidad;
+        this.idEspecialidad = idEspecialidad;
+        this.costoConsulta = costoConsulta;
         this.fechaCita = fechaCita;
         this.horaCita = horaCita;
-        this.idEspecialidad = idEspecialidad;
     }
 
-    public CitaMedico(String codigoPaciente, String codigoMedico, String especialiadesDoctor,
-            Date fechaCita, Time horaCita, String idEspecialidad) {
-        this.codigoPaciente = codigoPaciente;
-        this.codigoMedico = codigoMedico;
-        this.especialiadesDoctor = especialiadesDoctor;
-        this.fechaCita = fechaCita;
-        this.horaCita = horaCita;
-        this.idEspecialidad = idEspecialidad;
+    
+    public double getCostoConsulta() {
+        return costoConsulta;
     }
-    
-    
+
+    public void setCostoConsulta(double costoConsulta) {
+        this.costoConsulta = costoConsulta;
+    }
 
     public String getCodigo() {
         return codigo;
@@ -69,12 +80,12 @@ public class CitaMedico {
         this.codigoMedico = codigoMedico;
     }
 
-    public String getEspecialiadesDoctor() {
-        return especialiadesDoctor;
+    public String getNombreEspecialidad() {
+        return nombreEspecialidad;
     }
 
-    public void setEspecialiadesDoctor(String especialiadesDoctor) {
-        this.especialiadesDoctor = especialiadesDoctor;
+    public void setNombreEspecialidad(String nombreEspecialidad) {
+        this.nombreEspecialidad = nombreEspecialidad;
     }
 
     public Date getFechaCita() {
