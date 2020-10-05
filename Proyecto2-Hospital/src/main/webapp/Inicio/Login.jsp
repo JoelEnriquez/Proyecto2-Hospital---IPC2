@@ -4,8 +4,7 @@
     Author     : joel
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>  
     <head>
@@ -14,14 +13,16 @@
     </head>
 
     <body>
-        <c:if test="${success == 0}">
-            <p id="error">Usuario o Contraseña Incorrecto</p>
-        </c:if>
-            
+        <%if (request.getAttribute("fallo") != null) {%>
+        <%if ((boolean) request.getAttribute("fallo")) {%>
+        <p>Usuario o Contraseña Incorrecto</p>
+        <%}%>
+        <%}%>
+
         <div class="container">
             <div class="row justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img src="resources/doctor_and_patient.jpg" class="card-img-top" alt="10">
+                    <img src="../resources/doctor_and_patient.jpg" class="card-img-top" alt="10">
                     <div class="card-body">
                         <form action="Login" method="POST">
                             <div class="form-group">

@@ -1,13 +1,14 @@
-package Controladores;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package ControladoresInicio;
 
+import ModelosInicio.VerificarDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "ComprobarDatos", urlPatterns = {"/ComprobarDatos"})
+public class ComprobarDatos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +34,16 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        VerificarDatos verificar = new VerificarDatos();
+        int resultAux = verificar.verificarDatos();
+        if (resultAux==0) { //No hay datos y requiere de subida
+            request.setAttribute("SolicitudDatos", 0);
         }
+        else{
+            request.setAttribute("SolicitudDatos", 1);
+        }
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
