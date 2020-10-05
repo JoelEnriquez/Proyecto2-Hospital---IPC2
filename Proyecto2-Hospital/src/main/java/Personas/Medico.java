@@ -15,6 +15,18 @@ import java.sql.Time;
  */
 public class Medico extends Persona {
 
+    public static final String MEDICO_DB_NAME = "MEDICO";
+    public static final String MEDICO_CODIGO_DB_NAME = "codigo";
+    public static final String NOMBRE_DB_NAME = "nombre";
+    public static final String COLEGIADO_DB_NAME = "numero_colegiado";
+    public static final String HORARIO_INICIO_DB_NAME = "horario_inicio";
+    public static final String HORARIO_FIN_DB_NAME = "horario_fin";
+    public static final String DPI_DB_NAME = "DPI";
+    public static final String TELEFONO_DB_NAME = "telefono";
+    public static final String CORREO_DB_NAME = "correo_electronico";
+    public static final String FECHA_INICIO_DB_NAME = "fecha_inicio_hospital";
+    public static final String PASSWORD_DB_NAME = "password";    
+    
     private Time horaInicio;
     private Time horaFin;
     private String numeroColegiado;

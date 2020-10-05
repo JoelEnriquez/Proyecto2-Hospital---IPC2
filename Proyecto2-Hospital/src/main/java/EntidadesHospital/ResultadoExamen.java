@@ -15,6 +15,18 @@ import java.sql.Time;
  * @author Joel Enriquez
  */
 public class ResultadoExamen {
+    
+    public static final String RESULTADO_EXAMEN_DB_NAME = "RESULTADO_EXAMEN";
+    public static final String RESULTADO_EXAMEN_CODIGO_DB_NAME = "codigo";
+    public static final String ORDEN_DB_NAME = "orden";
+    public static final String INFORME_DB_NAME = "informe";
+    public static final String HORA_DB_NAME = "hora";
+    public static final String FECHA_DB_NAME = "fecha";
+    public static final String CODIGO_PACIENTE_DB_NAME = "codigo_paciente";
+    public static final String CODIGO_MEDICO_DB_NAME = "codigo_medico";
+    public static final String CODIGO_LABORATORISTA_DB_NAME = "codigo_laboratorista";
+    public static final String CODIGO_EXAMEN_DB_NAME = "codigo_examen";
+    
     private String codigo;
     private InputStream orden;
     private InputStream informe;

@@ -11,6 +11,12 @@ package EntidadesAsignacion;
  * @author Joel Enriquez
  */
 public class Especialidad {
+    
+    public static final String ESPECIALIDAD_DB_NAME = "ESPECIALIDAD";
+    public static final String ESPECIALIDAD_ID_DB_NAME = "id";
+    public static final String NOMBRE_DB_NAME = "nombre";
+    public static final String COSTO_CONSULTA_DB_NAME = "costo_consulta";   
+    
     private String id;
     private String nombre;
     private double costoConsulta;

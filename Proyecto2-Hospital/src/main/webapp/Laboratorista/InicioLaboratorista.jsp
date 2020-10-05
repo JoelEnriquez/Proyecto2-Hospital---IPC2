@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 4 oct. 2020, 20:32:44
+    Document   : InicioLaboratorista
+    Created on : 4 oct. 2020, 16:56:53
     Author     : joel
 --%>
 

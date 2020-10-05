@@ -12,6 +12,16 @@ package EntidadesAsignacion;
  */
 public class AsignarDiasLab {
 
+    public static final String ASIGNAR_DIAS_LAB_DB_NAME = "ASIGNAR_DIAS_LAB";
+    public static final String CODIGO_LABORISTA_DB_NAME = "codigo_laboratorista";
+    public static final String LUNES_DB_NAME = "lunes";
+    public static final String MARTES_DB_NAME = "martes";
+    public static final String MIERCOLES_DB_NAME = "miercoles";
+    public static final String JUEVES_DB_NAME = "jueves";
+    public static final String VIERNES_DB_NAME = "viernes";
+    public static final String SABADO_DB_NAME = "sabado";  
+    public static final String DOMINGO_DB_NAME = "domingo"; 
+    
     private String codigoLaboratorista;
     private boolean lunes=false;
     private boolean martes=false;

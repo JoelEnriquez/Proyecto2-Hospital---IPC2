@@ -14,6 +14,17 @@ import java.sql.Date;
  */
 public class Laboratorista extends Persona {
 
+    public static final String LABORATORISTA_DB_NAME = "LABORATORISTA";
+    public static final String LABORATORISTA_CODIGO_DB_NAME = "codigo";
+    public static final String NOMBRE_DB_NAME = "nombre";
+    public static final String REGISTRO_DB_NAME = "registro";
+    public static final String DPI_DB_NAME = "DPI";
+    public static final String TELEFONO_DB_NAME = "telefono";
+    public static final String CORREO_DB_NAME = "correo_electronico";
+    public static final String FECHA_INICIO_DB_NAME = "fecha_inicio_hospital";
+    public static final String PASSWORD_DB_NAME = "password";  
+    public static final String CODIGO_EXAMEN_DB_NAME = "codigo_tipo_examen";  
+    
     private Date fechaInicioHospital;
     private int codigoTipoExamen;
     private String registroSalud;

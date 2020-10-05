@@ -11,6 +11,14 @@ package EntidadesHospital;
  * @author Joel Enriquez
  */
 public class TipoExamen {
+    
+    public static final String TIPO_EXAMEN_DB_NAME = "TIPO_EXAMEN";
+    public static final String TIPO_EXAMEN_CODIGO_DB_NAME = "codigo";
+    public static final String NOMBRE_EXAMEN_DB_NAME = "nombre_examen";
+    public static final String DESCRIPCION_DB_NAME = "descripcion";
+    public static final String COSTO_DB_NAME = "costo";
+    public static final String FORMATO_INFORME_DB_NAME = "formato_informe";
+    
     private String codigo;
     private String nombreExamen;
     private String descripcion;

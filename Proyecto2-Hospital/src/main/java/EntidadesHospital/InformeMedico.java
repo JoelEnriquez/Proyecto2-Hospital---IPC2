@@ -14,6 +14,16 @@ import java.sql.Time;
  * @author Joel Enriquez
  */
 public class InformeMedico {
+    
+    public static final String INFORME_MEDICO_DB_NAME = "INFORME_MEDICO";
+    public static final String INFORME_MEDICO_CODIGO_DB_NAME = "codigo";
+    public static final String FECHA_DB_NAME = "fecha";
+    public static final String HORA_DB_NAME = "hora";
+    public static final String DESCRIPCION_DB_NAME = "descripcion";
+    public static final String CODIGO_PACIENTE_DB_NAME = "codigo_paciente";
+    public static final String CODIGO_MEDICO_DB_NAME = "codigo_medico";
+    public static final String CODIGO_CITA_MEDICO_DB_NAME = "codigo_cita_medico";
+    
     private String codigo;
     private Date fechaInforme;
     private Time horaInforme;

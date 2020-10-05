@@ -11,6 +11,11 @@ package EntidadesAsignacion;
  * @author Joel Enriquez
  */
 public class AsignacionEspecialidad {
+    
+    public static final String ASIGNACION_ESPECIALIDAD_DB_NAME = "ASIGNACION_ESPECIALIDAD";
+    public static final String CODIGO_MEDICO_DB_NAME = "codigo_medico";
+    public static final String ID_ESPECIALIDAD_DB_NAME = "id_especialidad";
+    
     private String idEspecialidad;
     private String codigoMedico;
 
