@@ -5,7 +5,9 @@ package ControladoresInicio;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import Encriptar.Encriptacion;
+import Modelos.PacienteModel;
+import ModelosInicio.LoginModel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -38,7 +40,7 @@ public class Login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
+            out.println("<title>Servlet Login</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
@@ -47,19 +49,10 @@ public class Login extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.sendRedirect(request.getContextPath() + "/Inicio/Login.jsp");
     }
 
     /**
@@ -73,7 +66,65 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String codigo = request.getParameter("codigo");
+        String password = request.getParameter("password");
+
+        //Encriptamos la contraseña entrante
+        Encriptacion encriptacion = new Encriptacion();
+        String encryptedPass = "";
+        try {
+            encryptedPass = encriptacion.encriptar(password);
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+        }
+
+        LoginModel loginM = new LoginModel();
+        boolean accesoConcedido = false;
+        String tipoPersona = loginM.devolverTipoPersona(codigo);
+        //Verificamos que tipo de usuario es y buscamos en la tabla respectiva
+        switch (tipoPersona) {
+            case "Paciente":
+                accesoConcedido = loginM.loginPacienteValido(Integer.parseInt(codigo), encryptedPass);
+                break;
+            case "Medico":
+                accesoConcedido = loginM.loginMedicoValido(codigo, encryptedPass);
+                break;
+            case "Laboratorista":
+                accesoConcedido = loginM.loginLabValido(codigo, encryptedPass);
+                break;
+            case "Admin":
+                accesoConcedido = loginM.loginAdminValido(codigo, encryptedPass);
+                break;
+            default:
+                break;
+        }
+
+        if (accesoConcedido) {
+
+            request.getSession().setAttribute("codigo", codigo);
+            request.getSession().setAttribute("persona", tipoPersona);           
+
+            switch (tipoPersona) {
+                case "Paciente":
+                    PacienteModel pacienteModel = new PacienteModel();
+                    request.getSession().setAttribute("nombre", pacienteModel.obtenerPaciente(Integer.parseInt(codigo)).getNombre());
+                    response.sendRedirect(request.getContextPath() + "/Paciente/InicioPaciente.jsp");
+                    break;
+                case "Medico":
+                    response.sendRedirect(request.getContextPath() + "/Medico/InicioMedico.jsp");
+                    break;
+                case "Laboratorista":
+                    response.sendRedirect(request.getContextPath() + "/Laboratorista/InicioLaboratorista.jsp");
+                    break;
+                case "Admin":
+                    response.sendRedirect(request.getContextPath() + "/Admin/InicioAdmin.jsp");
+                    break;
+            }
+        } else {
+            request.setAttribute("fail", true);
+            request.getRequestDispatcher("/Inicio/Login.jsp").forward(request, response);
+        }
     }
 
     /**

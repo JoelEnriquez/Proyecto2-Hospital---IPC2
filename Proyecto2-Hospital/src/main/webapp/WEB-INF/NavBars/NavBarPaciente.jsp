@@ -1,0 +1,50 @@
+<%-- 
+    Document   : NavbarPaciente
+    Created on : 5 oct. 2020, 19:38:32
+    Author     : joel
+--%>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand text-white" href="${pageContext.request.contextPath}/Paciente/InicioPaciente.jsp">Corpomedic <%=request.getSession().getAttribute("persona")%></a>
+        <button class="navbar-toggler" data-target="#menu" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#">
+                        Historial Medico
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControlHistorialMP">Visualizar</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#">
+                        Consultas Medicas
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Visualizar citas</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorAgendarConsulta">Agendar</a>
+                        <a class="dropdown-item" href="#">Consultas con un medico</a>
+                        <a class="dropdown-item" href="#">Ultimas consultas</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#">
+                        Examen Laboratorio
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Agendar</a>
+                        <a class="dropdown-item" href="#">Ver examenes de un tipo</a>
+                        <a class="dropdown-item" href="#">Ultimos examenes</a>
+                    </div>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <%="Codigo:" + request.getSession().getAttribute("codigo")%>
+            </span> 
+        </div>
+    </nav>
+</div>

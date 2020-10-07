@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package ControlComunes;
 
+import ModelosComunes.ModelHistorialMedico;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,9 +19,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "ControladorPaciente", urlPatterns = {"/ControladorPaciente"})
-public class ControladorPaciente extends HttpServlet {
+@WebServlet(name = "ControlHistorialMP", urlPatterns = {"/ControlHistorialMP"})
+public class ControlHistorialMP extends HttpServlet {
 
+    private ModelHistorialMedico historialMM = new ModelHistorialMedico();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,19 +34,8 @@ public class ControladorPaciente extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorPaciente</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorPaciente at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,7 +50,18 @@ public class ControladorPaciente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            String codigoPaciente = request.getSession().getAttribute("codigo").toString();
+            if (codigoPaciente!=null) {
+                //Se obtienen las consultas y examenes del Paciente en base a su codigo
+                request.setAttribute("examenes", historialMM.obtenerExamenesEspecificos(codigoPaciente));
+                request.setAttribute("consultas", historialMM.obtenerCitasMedicasEspecificos(codigoPaciente));
+                RequestDispatcher requestD = request.getRequestDispatcher("/Paciente/HistorialMedicoPaciente.jsp");
+                requestD.forward(request, response);
+            }
+        } catch (IOException | ServletException e) {
+            e.printStackTrace(System.out);
+        }
     }
 
     /**

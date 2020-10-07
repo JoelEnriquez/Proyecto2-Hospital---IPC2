@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,66 +14,17 @@
     </head>
 
     <body> 
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand text-white">Corpomedic</a>
-                <button class="navbar-toggler" data-target="#menu" data-toggle="collapse" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#">
-                                Administracion
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Users</a>
-                                <a class="dropdown-item" href="#">Perfiles</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#">
-                                Administracion
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Users</a>
-                                <a class="dropdown-item" href="#">Perfiles</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#">
-                                Administracion
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Users</a>
-                                <a class="dropdown-item" href="#">Perfiles</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#">
-                                Administracion
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Users</a>
-                                <a class="dropdown-item" href="#">Perfiles</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <span class="navbar-text">
-                        Texto Plano
-                    </span> 
-                </div>
-            </nav>
-        </div>
-    <center>
+
+        <jsp:include page="/WEB-INF/NavBars/NavBarPaciente.jsp"/>
+        
+    <CENTER>
+        <br/>
         <div class="row align-items-center">
             <div class="col">
-                <img src="../resources/Paciente_Doctor.jpg" alt="200">
+                <img src="${pageContext.request.contextPath}/resources/Paciente_Doctor.jpg" alt="300">
             </div>
         </div>
-
-    </center>
-
+    </CENTER>
 
     <jsp:include page="/WEB-INF/Extras/extraJS.jsp"/>
 </body>
