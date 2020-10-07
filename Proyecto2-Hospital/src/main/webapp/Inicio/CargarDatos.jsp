@@ -57,7 +57,7 @@
             </div>
             <br>
             <CENTER>
-                <a href="Login.jsp" class="btn btn-primary">Iniciar Sesion</a>
+                <a href="${pageContext.request.contextPath}/Inicio/Login.jsp" class="btn btn-primary">Iniciar Sesion</a>
             </CENTER>
 
             <% } else {%>

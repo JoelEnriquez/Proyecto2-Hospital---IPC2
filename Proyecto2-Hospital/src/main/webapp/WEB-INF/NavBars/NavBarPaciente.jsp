@@ -25,10 +25,10 @@
                         Consultas Medicas
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Visualizar citas</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorAgendarConsulta">Agendar</a>
-                        <a class="dropdown-item" href="#">Consultas con un medico</a>
-                        <a class="dropdown-item" href="#">Ultimas consultas</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorCitasPenPaci">Visualizar citas</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Paciente/AgendarConsulta.jsp">Agendar/Info Medicos</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ConsultasMedicoEspe.jsp">Consultas con un medico</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorUltimasConsultas">Ultimas consultas</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -38,7 +38,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Agendar</a>
                         <a class="dropdown-item" href="#">Ver examenes de un tipo</a>
-                        <a class="dropdown-item" href="#">Ultimos examenes</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorUltimosExamenes">Ultimos examenes</a>
                     </div>
                 </li>
             </ul>
