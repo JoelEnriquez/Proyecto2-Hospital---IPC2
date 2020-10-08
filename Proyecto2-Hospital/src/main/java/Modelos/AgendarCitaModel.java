@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class AgendarCitaModel {
     
     private final String CITA_EXISTENTE = "SELECT COUNT(*) FROM CITA_MEDICO WHERE "+CitaMedico.CODIGO_MEDICO_DB_NAME+"=? AND "+CitaMedico.FECHA_DB_NAME+"=? AND "+CitaMedico.HORA_DB_NAME+"=?";
-    private final String CREAR_CITA = "INSERT INTO "+ CitaMedico.CITA_MEDICO_DB_NAME +" (hora, fecha, codigo_paciente, codigo_medico, id_especialidad, especialidad_cita, costo_consulta) VALUES (?,?,?,?,?,?,?)";
+    private final String CREAR_CITA = "INSERT INTO "+ CitaMedico.CITA_MEDICO_DB_NAME +" (fecha, hora, codigo_paciente, codigo_medico, id_especialidad, especialidad_cita, costo_consulta) VALUES (?,?,?,?,?,?,?)";
     private final String ESPECIALIDADES_MEDICO = "SELECT E.* FROM ESPECIALIDAD E INNER JOIN ASIGNACION_ESPECIALIDAD AE WHERE E.id = AE.id_especialidad WHERE AE.codigo_medico = ?";
 
     private Connection conexion = Conexion.getConexion();

@@ -8,7 +8,6 @@ package ModelMedico;
 import ConexionDB.Conexion;
 import EntidadesHospital.CitaMedico;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -20,15 +19,20 @@ import java.util.ArrayList;
 public class CitasPendientesModel {
 
     private final String CITAS_MEDICAS = "SELECT CM.* FROM " + CitaMedico.CITA_MEDICO_DB_NAME + " CM";
-    private final String CITAS_PENDIENTES_DIA = CITAS_MEDICAS + " LEFT JOIN INFORME_MEDICO IM ON CM.codigo=IM.codigo_cita_medico WHERE IM.codigo_cita_medico IS NULL AND CM.codigo_medico=? AND fecha=?";
+    private final String CITAS_PENDIENTES_DIA = CITAS_MEDICAS + " LEFT JOIN INFORME_MEDICO IM ON CM.codigo=IM.codigo_cita_medico WHERE IM.codigo_cita_medico IS NULL AND CM.codigo_medico=? AND CM.fecha=DATE(NOW()) ORDER BY CM.hora,CM.fecha";
 
     private Connection conexion = Conexion.getConexion();
 
-    public ArrayList<CitaMedico> getCitasPendientesDia(String codigoMedico, Date diaTrabajo) throws Exception {
+    /**
+     * Se obtienen las citas pendientes del dia de un medico en base a su codigo
+     * @param codigoMedico
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<CitaMedico> getCitasPendientesDia(String codigoMedico) throws Exception {
         ArrayList<CitaMedico> citasPendientes = new ArrayList<>();
         try (PreparedStatement ps = conexion.prepareStatement(CITAS_PENDIENTES_DIA)) {
             ps.setString(1, codigoMedico);
-            ps.setDate(2, diaTrabajo);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

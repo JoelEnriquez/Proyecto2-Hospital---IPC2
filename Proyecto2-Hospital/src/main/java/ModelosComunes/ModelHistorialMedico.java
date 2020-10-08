@@ -13,6 +13,7 @@ import EntidadesHospital.ResultadoExamen;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +32,33 @@ public class ModelHistorialMedico {
 
     private Connection conexion = Conexion.getConexion();
 
+    /**
+     * Se obtienen todas las citas de los pacientes
+     * @return 
+     */
+    public ArrayList<CitaMedico> obtenerCitasMedicasPacientes(){
+        ArrayList<CitaMedico> listCitasMedicasPac = new ArrayList<>();
+        try(PreparedStatement ps = conexion.prepareStatement(HISTORIAL_CONSULTAS+ "ORDER BY CM.fecha, CM.hora")){
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    listCitasMedicasPac.add(new CitaMedico(
+                            rs.getString("codigo"),
+                            rs.getString("codigo_paciente"),
+                            rs.getString("codigo_medico"),
+                            rs.getString("especialidad_cita"),
+                            rs.getString("id_especialidad"),
+                            rs.getDouble("costo_consulta"),
+                            rs.getDate("fecha"),
+                            rs.getTime("hora")));
+                }
+            }
+        }
+        catch(SQLException sql) {
+            sql.printStackTrace(System.out);
+        }
+        return listCitasMedicasPac;
+    }
+    
     public ArrayList<Examen> obtenerExamenesPacientes() {
         ArrayList<Examen> examenesPacientes = new ArrayList<>();
         try (PreparedStatement ps = conexion.prepareStatement(HISTORIAL_EXAMENES + "ORDER BY E.fecha, E.hora")) {
@@ -75,27 +103,7 @@ public class ModelHistorialMedico {
         return examenesPacientes;
     }
 
-    public ArrayList<CitaMedico> obtenerCitasMedicasPacientes() {
-        ArrayList<CitaMedico> consultasPacientes = new ArrayList<>();
-        try (PreparedStatement ps = conexion.prepareStatement(HISTORIAL_EXAMENES + "ORDER BY E.fecha, E.hora")) {
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    consultasPacientes.add(new CitaMedico(
-                            rs.getString("codigo"),
-                            rs.getString("codigo_paciente"),
-                            rs.getString("codigo_medico"),
-                            rs.getString("especialidad_cita"),
-                            rs.getString("id_especialidad"),
-                            rs.getDouble("costo_consulta"),
-                            rs.getDate("fecha"),
-                            rs.getTime("hora")));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-        return consultasPacientes;
-    }
+
 
     public ArrayList<CitaMedico> obtenerCitasMedicasEspecificos(String codigoPaciente) {
         ArrayList<CitaMedico> consultasPacientes = new ArrayList<>();

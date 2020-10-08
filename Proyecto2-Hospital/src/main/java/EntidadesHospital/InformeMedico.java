@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 /**
- * 
+ * Es una descripcion de una consulta previamente realizada
  * @author Joel Enriquez
  */
 public class InformeMedico {
@@ -31,6 +31,8 @@ public class InformeMedico {
     private String codigoPaciente;
     private String codigoMedico;
     private String codigoCitaMedico;
+    
+    
 
     public InformeMedico(Date fechaInforme, Time horaInforme,
             String descripcionInforme, String codigoPaciente,
@@ -110,6 +112,10 @@ public class InformeMedico {
     public void setCodigoCitaMedico(String codigoCitaMedico) {
         this.codigoCitaMedico = codigoCitaMedico;
     }
+
+    
+    
+    
     
     
 }

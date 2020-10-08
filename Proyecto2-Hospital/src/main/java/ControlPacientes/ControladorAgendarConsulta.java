@@ -40,7 +40,7 @@ public class ControladorAgendarConsulta extends HttpServlet {
 
         SimpleDateFormat format = new SimpleDateFormat("HH:mm"); //Formato correcto para la hora
 
-        String codigoPaciente = request.getSession().getAttribute("nombre").toString();
+        String codigoPaciente = request.getSession().getAttribute("codigo").toString();
         String codigoMedico;
         String hCita = request.getParameter("horaCita");
         String fCita = request.getParameter("fechaCita");

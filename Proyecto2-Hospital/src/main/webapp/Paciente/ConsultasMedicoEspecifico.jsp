@@ -13,11 +13,22 @@
         <jsp:include page="/WEB-INF/Extras/extraCSS.jsp"/>
     </head>
     <body>
+        
+        <%--Si no encuentra codigo o que sea Paciente, redirigir al inicio --%>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+            if (session.getAttribute("codigo") == null || !session.getAttribute("persona").equals("Paciente")) {
+                response.sendRedirect(request.getContextPath() + "/Inicio/Login.jsp");
+            }
+        %>
         <jsp:include page="/WEB-INF/NavBars/NavBarPaciente.jsp"/>
         <br>
         <br>
         <c:if test="${no_medico_exist!=null}"> <p class="alert alert-danger"> Por favor, elija un codigo existente </p></c:if>
         <div class="main mx-5" style="flex:2;">
+            <div class="flexbox-container" style="display:flex;">
+
             <form action="${pageContext.request.contextPath}/ControladorConsultasMedicoEspe" method="GET">
                 <h4>Intervalo de tiempo</h4>
                 <div class="form-group row">
@@ -66,6 +77,7 @@
                 </c:forEach>
             </table>
         </div>
+        
 
         <jsp:include page="/WEB-INF/Extras/extraJS.jsp"/>
     </body>

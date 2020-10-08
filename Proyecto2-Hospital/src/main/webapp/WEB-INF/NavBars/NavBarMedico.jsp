@@ -12,7 +12,7 @@
                         Citas Medicas
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/CitasAgendadas">Ver Citas Agendadas</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Medico/CitasAgendadasIntervalo.jsp">Ver Citas Agendadas</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/CitasPendientesEnDia">Pendientes en el dia</a>
                     </div>
                 </li>
@@ -21,7 +21,7 @@
                         Informacion Pacientes
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/PacientesMayorInformes">Pacientes con mas informes</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Medico/PacientesMayorCantidadInformes.jsp">Pacientes con mas informes</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/HistorialMedicoPacientes">Historial medico</a>
                     </div>
                 </li>

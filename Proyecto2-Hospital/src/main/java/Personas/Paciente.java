@@ -30,6 +30,8 @@ public class Paciente extends Persona {
     private Date fechaNacimiento;
     private String peso;
     private String tipoSangre;
+    
+    private int numeroInformes; //Sirve para guardar el numero de informes de un paciente
 
     public Paciente(String sexo, Date fechaNacimiento, String peso, String tipoSangre,
             String codigo, String nombre, String DPI, String contraseña,
@@ -85,6 +87,15 @@ public class Paciente extends Persona {
         this.tipoSangre = tipoSangre;
     }
 
+    public int getNumeroInformes() {
+        return numeroInformes;
+    }
+
+    public void setNumeroInformes(int numeroInformes) {
+        this.numeroInformes = numeroInformes;
+    }
+
+    
     
 
 

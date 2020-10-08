@@ -18,7 +18,7 @@
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 
             if (session.getAttribute("codigo") == null || !session.getAttribute("persona").equals("Paciente")) {
-                response.sendRedirect(request.getContextPath()+"/Inicio/Login.jsp");
+                response.sendRedirect(request.getContextPath() + "/Inicio/Login.jsp");
             }
         %>
         <jsp:include page="/WEB-INF/NavBars/NavBarPaciente.jsp"/>
@@ -139,7 +139,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Hora</label>
                         <div class="col-sm-10">
-                            <input type="time" class="form-control" name="horaCita" required>
+                            <input type="time" class="form-control" name="horaCita" required step="3600">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -174,9 +174,9 @@
                 <br>
                 <c:if test="${fail_consulta!=null}"> <p class="alert alert-danger"> Error en la solicitud </p></c:if>
                 <c:if test="${sucess_consulta!=null}"> <p class="alert alert-success"> Consulta Generada Exitosamente </p></c:if>  
-                </div>
             </div>
-
+        </div>
+         
 
         <jsp:include page="/WEB-INF/Extras/extraJS.jsp"/>
 

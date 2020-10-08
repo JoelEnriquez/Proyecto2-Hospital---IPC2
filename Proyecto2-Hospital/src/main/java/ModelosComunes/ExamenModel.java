@@ -21,7 +21,7 @@ public class ExamenModel {
 
     private String TIPOS_EXAMEN = "SELECT * FROM " + TipoExamen.TIPO_EXAMEN_DB_NAME;
     private String NOMBRE_TIPO_EXAMEN_POR_CODIGO = "SELECT nombre_examen FROM "+TipoExamen.TIPO_EXAMEN_DB_NAME+" WHERE codigo=?";
-    private String PENDEINTE = "SELECT TE.* FROM " + TipoExamen.TIPO_EXAMEN_DB_NAME + " TE INNER ";
+    
 
     private Connection conexion = Conexion.getConexion();
 

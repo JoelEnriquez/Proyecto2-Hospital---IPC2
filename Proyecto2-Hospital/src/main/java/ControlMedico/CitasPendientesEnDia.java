@@ -5,8 +5,13 @@
  */
 package ControlMedico;
 
+import EntidadesHospital.CitaMedico;
+import ModelMedico.CitasPendientesModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +26,7 @@ import javax.ws.rs.core.Request;
 @WebServlet(name = "CitasPendientesEnDia", urlPatterns = {"/CitasPendientesEnDia"})
 public class CitasPendientesEnDia extends HttpServlet {
 
+    private CitasPendientesModel citasPendientesModel = new CitasPendientesModel();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,7 +34,21 @@ public class CitasPendientesEnDia extends HttpServlet {
         if (request.getSession().getAttribute("codigo")==null || !request.getSession().getAttribute("persona").equals("Medico")) {
             response.sendRedirect(request.getContextPath()+"/ControlLogOut");
         }
-        
+        else{
+            ArrayList<CitaMedico> listCitasPendientesDia = null;
+            try {
+                listCitasPendientesDia = citasPendientesModel.getCitasPendientesDia(request.getSession().getAttribute("codigo").toString());
+            } catch (Exception ex) {
+                ex.getMessage();
+            }
+            if (listCitasPendientesDia!=null && listCitasPendientesDia.size()>0) {
+                request.getSession().setAttribute("cita_atender", listCitasPendientesDia.get(0));
+            }           
+            
+            request.setAttribute("citas_pen", listCitasPendientesDia);
+            
+            request.getRequestDispatcher("/Medico/CitasPendientesDia.jsp").forward(request, response);
+        }
         
     }
 

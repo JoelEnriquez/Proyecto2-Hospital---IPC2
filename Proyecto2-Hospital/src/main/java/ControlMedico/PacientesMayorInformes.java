@@ -5,8 +5,11 @@
  */
 package ControlMedico;
 
+import Modelos.PacienteModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,69 +23,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "PacientesMayorInformes", urlPatterns = {"/PacientesMayorInformes"})
 public class PacientesMayorInformes extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PacientesMayorInformes</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PacientesMayorInformes at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+   private PacienteModel paciente = new PacienteModel();
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        Date fecha1 = Date.valueOf(request.getParameter("intervalo_1"));
+        Date fecha2 = Date.valueOf(request.getParameter("intervalo_2"));
+        if (fecha1.compareTo(fecha2)>0) {
+            request.setAttribute("wrong_time", true);
+        }
+        else{
+        request.setAttribute("list_pacientes", paciente.pacientesMasInformes(request.getSession().getAttribute("codigo").toString(), fecha1, fecha2));
+        }
+        request.getRequestDispatcher("/Medico/PacientesMayorCantidadInformes.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

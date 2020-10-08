@@ -14,6 +14,15 @@
         <jsp:include page="/WEB-INF/Extras/extraCSS.jsp"/>
     </head>
     <body>
+        
+        <%--Si no encuentra codigo o que sea Paciente, redirigir al inicio --%>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+            if (session.getAttribute("codigo") == null || !session.getAttribute("persona").equals("Paciente")) {
+                response.sendRedirect(request.getContextPath() + "/Inicio/Login.jsp");
+            }
+        %>
         <jsp:include page="/WEB-INF/NavBars/NavBarPaciente.jsp"/>
 
     <br/>   
@@ -31,7 +40,7 @@
             <th>Requiere Orden</th>
             <th>Codigo Paciente</th>
             <th>Codigo Medico</th>
-            <th>Codigo Tipo Examen</th>
+            <th>Nombre Tipo Examen</th>
         </tr>
         <c:forEach items="${examenes}" var="examen">
             <tr>
@@ -41,7 +50,7 @@
                 <td>${examen.requiereOrden}</td>
                 <td>${examen.codigoPaciente}</td>
                 <td>${examen.codigoMedico}</td>
-                <td>${examen.codigoTipoExamen}</td>
+                <td>${examen.nombreTipoExamen}</td>
             </tr>
         </c:forEach>
     </table>
@@ -56,7 +65,6 @@
             <th>Hora</th>
             <th>Codigo Paciente</th>
             <th>Codigo Medico</th>
-            <th>Id. Especialidad</th>
             <th>Especialidad Cita</th>
             <th>Costo Consulta (Q)</th>
         </tr>
@@ -67,7 +75,6 @@
                 <td>${consulta.horaCita}</td>
                 <td>${consulta.codigoPaciente}</td>
                 <td>${consulta.codigoMedico}</td>
-                <td>${consulta.idEspecialidad}</td>
                 <td>${consulta.nombreEspecialidad}</td>
                 <td>${consulta.costoConsulta}</td>
             </tr>

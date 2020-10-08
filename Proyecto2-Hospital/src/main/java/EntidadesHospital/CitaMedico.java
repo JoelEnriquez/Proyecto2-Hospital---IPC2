@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 /**
- * 
+ * Esta clase modela la cita medica y la relacion entre paciente y medico
  * @author Joel Enriquez
  */
 public class CitaMedico {

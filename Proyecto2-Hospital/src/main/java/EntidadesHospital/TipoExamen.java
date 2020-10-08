@@ -7,7 +7,7 @@
 package EntidadesHospital;
 
 /**
- * 
+ * Para reailzar distintos tipos de consulta, tambien los hay en examen, en donde uno puede elegir entre los distintos tipos que existen
  * @author Joel Enriquez
  */
 public class TipoExamen {

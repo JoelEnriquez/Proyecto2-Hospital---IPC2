@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControlComunes;
+package ControlMedico;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,19 +17,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "ControlLogOut", urlPatterns = {"/ControlLogOut"})
-public class ControlLogOut extends HttpServlet {
+@WebServlet(name = "AtenderConsulta", urlPatterns = {"/AtenderConsulta"})
+public class AtenderConsulta extends HttpServlet {
 
     
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().removeAttribute("codigo");
-        request.getSession().removeAttribute("nombre");
-        request.getSession().removeAttribute("persona");
-        request.getSession().removeAttribute("fecha"); //Laboratoristas y Medicos
         
-        response.sendRedirect(request.getContextPath()+"/Inicio/Login.jsp");
     }
 
     

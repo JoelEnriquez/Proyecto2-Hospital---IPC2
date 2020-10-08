@@ -10,7 +10,8 @@ import java.sql.Date;
 import java.sql.Time;
 
 /**
- * 
+ * Un examen es una entidad que permite guardar el registro de todos los examenes a realizar y realizados
+ * por su tipo y costo por ejemplo.
  * @author Joel Enriquez
  */
 public class Examen {
@@ -31,6 +32,7 @@ public class Examen {
     private String codigoPaciente;
     private String codigoMedico;
     private String codigoTipoExamen;
+    private String nombreTipoExamen;
 
     /**
      * Constructor para insertar examenes con orden
@@ -135,6 +137,14 @@ public class Examen {
 
     public void setCodigoTipoExamen(String codigoTipoExamen) {
         this.codigoTipoExamen = codigoTipoExamen;
+    }
+
+    public String getNombreTipoExamen() {
+        return nombreTipoExamen;
+    }
+
+    public void setNombreTipoExamen(String nombreTipoExamen) {
+        this.nombreTipoExamen = nombreTipoExamen;
     }
     
     

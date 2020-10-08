@@ -13,6 +13,15 @@
         <jsp:include page="/WEB-INF/Extras/extraCSS.jsp"/>
     </head>
     <body>
+        <%--Si no encuentra codigo o que sea Paciente, redirigir al inicio --%>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+            if (session.getAttribute("codigo") == null || !session.getAttribute("persona").equals("Paciente")) {
+                response.sendRedirect(request.getContextPath() + "/Inicio/Login.jsp");
+            }
+        %>
+        
         <jsp:include page="/WEB-INF/NavBars/NavBarPaciente.jsp"/>
 
         <c:if test="${no_examen_type!=null}"> <p class="alert alert-danger"> Por favor, elija un examen </p></c:if>
