@@ -4,6 +4,7 @@
     Author     : joel
 --%>
 
+<%@page import="ModelosInicio.VerificarDatos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,6 +12,15 @@
     <jsp:include page="/WEB-INF/Extras/extraCSS.jsp"/>
 
     <body>
+        <%--Se verifican si ya hay un llenado en la base de datos, si hay, redirigir a login --%>
+        <%  
+            VerificarDatos verificar = new VerificarDatos();
+            int resultAux = verificar.verificarDatos();
+            if (resultAux != 0) {
+                response.sendRedirect(request.getContextPath()+"/Inicio/Login.jsp");
+            }
+        %>
+
         <% if (request.getAttribute("Sucess") == null) {%>
         <div class="container" style="padding-top: 150px" >
             <CENTER>

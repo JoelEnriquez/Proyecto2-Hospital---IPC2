@@ -13,6 +13,14 @@
         <jsp:include page="/WEB-INF/Extras/extraCSS.jsp"/>     
     </head>
     <body>
+        <%--Si no encuentra codigo o que sea Paciente, redirigir al inicio --%>
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+            if (session.getAttribute("codigo") == null || !session.getAttribute("persona").equals("Paciente")) {
+                response.sendRedirect(request.getContextPath()+"/Inicio/Login.jsp");
+            }
+        %>
         <jsp:include page="/WEB-INF/NavBars/NavBarPaciente.jsp"/>
         <style>
             .my-custom-scrollbar {
@@ -117,17 +125,17 @@
                         <CENTER>
                             <h3>
                                 Codigo Medico <c:if test="${codigo_medico!=null}"> : ${codigo_medico}</c:if>
-                            </h3>
-                        </CENTER>
-                        <input type="text" class="form-control" name="codigoMedico" required>
-                    </div>
+                                </h3>
+                            </CENTER>
+                            <input type="text" class="form-control" name="codigoMedico" required>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Solicitar</button>
+                        </div>
+                    </form>
                     <br>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Solicitar</button>
-                    </div>
-                </form>
-                <br>
-                <form action="${pageContext.request.contextPath}/ControladorAgendarConsulta" method="POST">
+                    <form action="${pageContext.request.contextPath}/ControladorAgendarConsulta" method="POST">
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Hora</label>
                         <div class="col-sm-10">
@@ -162,12 +170,12 @@
                         </div>
                     </div>
                 </form>
-                                
+
                 <br>
                 <c:if test="${fail_consulta!=null}"> <p class="alert alert-danger"> Error en la solicitud </p></c:if>
                 <c:if test="${sucess_consulta!=null}"> <p class="alert alert-success"> Consulta Generada Exitosamente </p></c:if>  
+                </div>
             </div>
-        </div>
 
 
         <jsp:include page="/WEB-INF/Extras/extraJS.jsp"/>

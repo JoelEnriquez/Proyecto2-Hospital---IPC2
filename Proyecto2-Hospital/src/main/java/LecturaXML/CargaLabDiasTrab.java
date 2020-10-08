@@ -31,13 +31,13 @@ public class CargaLabDiasTrab {
     private List<Element> listaExamenes;
     private ArrayList<Integer> codigosExamenConOrden;
 
-    public CargaLabDiasTrab(Connection conexion, Encriptacion encriptacion, List<Element> listaLaboratoristas, List<Element> listaExamenes, List<Element> listaResultados) {
+    public CargaLabDiasTrab(Connection conexion, Encriptacion encriptacion, List<Element> listaLaboratoristas, List<Element> listaExamenes, List<Element> listaResultados, String rutaPathAbsoluto) {
         this.conexion = conexion;
         this.encriptacion = encriptacion;
         this.listaLaboratoristas = listaLaboratoristas;
         this.listaExamenes = listaExamenes;
         codigosExamenConOrden = new ArrayList<>();
-        cargaResultsExamen = new CargaResultadosExamen(conexion,listaResultados);
+        cargaResultsExamen = new CargaResultadosExamen(conexion,listaResultados,rutaPathAbsoluto);
         consultasXML = new ConsultasSubidaXML();
     }
 

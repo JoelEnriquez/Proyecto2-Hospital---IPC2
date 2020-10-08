@@ -71,8 +71,9 @@ public class ControladorAgendarConsulta extends HttpServlet {
             }
             Especialidad especialidadAux = especialidadModel.obtenerPorId(idTipoConsulta);
             agendarCitaModel.crearCita(new CitaMedico(codigoPaciente, codigoMedico, especialidadAux.getNombre() , idTipoConsulta, especialidadAux.getCostoConsulta(), fechaCita, horaCita));
-            
+                     
             request.setAttribute("sucess_consulta", true);
+            request.getSession().removeAttribute("codigo_medico");
         }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Paciente/AgendarConsulta.jsp");
         requestDispatcher.forward(request, response);

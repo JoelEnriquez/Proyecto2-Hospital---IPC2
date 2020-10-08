@@ -42,7 +42,7 @@
                     <center>
                         <p class="h6">¿Eres un nuevo paciente?</p>
                         <button class="btn btn-light">
-                            <a href="RegistroPacientes.jsp">Registrate</a>
+                            <a href="${pageContext.request.contextPath}/Inicio/RegistroPacientes.jsp">Registrate</a>
                         </button>
                     </center>
                 </div>

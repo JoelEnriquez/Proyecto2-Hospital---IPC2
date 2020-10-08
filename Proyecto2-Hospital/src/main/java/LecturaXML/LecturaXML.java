@@ -23,11 +23,13 @@ import org.jdom2.JDOMException;
 public class LecturaXML {
 
     private String pathXML;
+    private String rutaPathAbsoluto;
     private Connection conexion;
     private Encriptacion encriptacion;
 
-    public LecturaXML(String pathXML, Connection conexion) {
+    public LecturaXML(String pathXML,String rutaPathAbsoluto, Connection conexion) {
         this.pathXML = pathXML;
+        this.rutaPathAbsoluto = rutaPathAbsoluto;
         this.conexion = conexion;
         encriptacion = new Encriptacion();
     }
@@ -77,7 +79,7 @@ public class LecturaXML {
             List<Element> listaExamenes = root.getChildren("examen");
             List<Element> listaResultados = root.getChildren("resultado");
             CargaLabDiasTrab cargaLE = new CargaLabDiasTrab(conexion, encriptacion,
-                    listaLaboratoristas, listaExamenes, listaResultados);
+                    listaLaboratoristas, listaExamenes, listaResultados,rutaPathAbsoluto);
             cargaLE.ejecutarCarga();
         } catch (JDOMException e) {
             throw new IOException("No se ha encontrado el archivo xml");

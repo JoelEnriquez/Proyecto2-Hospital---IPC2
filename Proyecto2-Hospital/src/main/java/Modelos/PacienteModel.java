@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,10 +37,11 @@ public class PacienteModel {
      *
      * @param paciente
      * @return
+     * @throws java.lang.Exception
      */
-    public long agregarPaciente(Paciente paciente) {
+    public long agregarPaciente(Paciente paciente) throws Exception{
 
-        try (PreparedStatement preSt = conexion.prepareStatement(CREAR_PACIENTE)) {
+        try (PreparedStatement preSt = conexion.prepareStatement(CREAR_PACIENTE, Statement.RETURN_GENERATED_KEYS)) {
             preSt.setString(1, paciente.getNombre());
             preSt.setString(2, paciente.getSexo());
             preSt.setDate(3, paciente.getFechaNacimiento());
@@ -59,7 +61,7 @@ public class PacienteModel {
             }
 
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            throw new Exception("La informacion de los campos es muy grande");
         }
         return -1;
     }

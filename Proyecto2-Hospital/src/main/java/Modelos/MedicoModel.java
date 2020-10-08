@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelos;
 
 import ConexionDB.Conexion;
-import EntidadesHospital.CitaMedico;
 import Personas.Medico;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -22,8 +15,8 @@ import java.util.ArrayList;
  */
 public class MedicoModel {
 
-    public final String MEDICOS = "SELECT * FROM " + Medico.MEDICO_DB_NAME;
-    private final String BUSCAR_MEDICO = MEDICOS + " WHERE " + Medico.MEDICO_CODIGO_DB_NAME + " = ? LIMIT 1";
+    private final String MEDICOS = "SELECT * FROM " + Medico.MEDICO_DB_NAME;
+    private final String NOMBRE_MEDICO = "SELECT nombre FROM "+ Medico.MEDICO_DB_NAME+" WHERE codigo=?";
     private final String MEDICOS_POR_NOMBRE = MEDICOS + " WHERE " + Medico.NOMBRE_DB_NAME + " LIKE ?";
     private final String MEDICOS_CON_ESPECIALIDAD = "SELECT M.* FROM MEDICO M INNER JOIN ASIGNACION_ESPECIALIDAD AE ON M.codigo=AE.codigo_medico WHERE AE.id_especialidad=?";
     private final String MEDICOS_POR_DISPONIBILIDAD = "SELECT * FROM " + Medico.MEDICO_DB_NAME + " WHERE horario_inicio<=? AND horario_fin>?";
@@ -56,7 +49,27 @@ public class MedicoModel {
         }
         return "";
     }
+    
+    public String nombreMedico(String codigoMedico){
+        try(PreparedStatement ps = conexion.prepareStatement(NOMBRE_MEDICO)) {
+            ps.setString(1, codigoMedico);
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
+                    return rs.getString(1);
+                }
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return "";
+    }
 
+    /**
+     * Nos devulve 1 si el medico existe y 0 si no existe
+     * @param codigo
+     * @return 
+     */
     public int medicoExixtente(String codigo) {
         String query = "SELECT COUNT(*) FROM MEDICO WHERE codigo = ?";
         int contador = 0;

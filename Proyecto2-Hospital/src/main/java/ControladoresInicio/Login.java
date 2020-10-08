@@ -6,6 +6,7 @@ package ControladoresInicio;
  * and open the template in the editor.
  */
 import Encriptar.Encriptacion;
+import Modelos.MedicoModel;
 import Modelos.PacienteModel;
 import ModelosInicio.LoginModel;
 import java.io.IOException;
@@ -84,6 +85,8 @@ public class Login extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/Paciente/InicioPaciente.jsp");
                     break;
                 case "Medico":
+                    MedicoModel medicoModel = new MedicoModel();
+                    request.getSession().setAttribute("nombre", medicoModel.nombreMedico(codigo));
                     response.sendRedirect(request.getContextPath() + "/Medico/InicioMedico.jsp");
                     break;
                 case "Laboratorista":

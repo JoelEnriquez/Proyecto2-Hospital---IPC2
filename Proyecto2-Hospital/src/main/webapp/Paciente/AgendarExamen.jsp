@@ -11,58 +11,50 @@
     <head>
         <%@include file="/WEB-INF/HeadTittle.html"%>
         <jsp:include page="/WEB-INF/Extras/extraCSS.jsp"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     </head>
     <body>
         <jsp:include page="/WEB-INF/NavBars/NavBarPaciente.jsp"/>
 
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Option 1
-            </label>
+        <br>
+        <c:if test="${no_examen_type!=null}"> <p class="alert alert-danger"> Por favor, elija un examen </p></c:if>
+        <c:if test="${sucess_examen!=null}"> <p class="alert alert-success"> Examen Generado Exitosamente </p></c:if> 
+            <br>
+            <div class="main mx-4" style="flex:2;">
+                <form action="${pageContext.request.contextPath}/ControladorAgendarExamen" method="POST">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Hora Examen</label>
+                    <div class="col-sm-3 my-1">                          
+                        <input type="time" class="form-control" name="hour_examen" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Fecha Examen</label>
+                    <div class="col-sm-3 my-1">                          
+                        <input type="date" class="form-control" name="date_examen" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Tipo Examen</label>
+                    <div class="col-sm-8">
+                        <%--Se obtiene el listado de tipos de examen para darle a elegir al usuario--%>
+                        <select class="form-control" name="tipo_examen">
+                            <option value="-1">
+                                ---Seleccione un tipo de examen---
+                            </option>
+                            <c:forEach items="${tipo_examenes}" var="tipo_examen">
+                                <option value="${tipo_examen.codigo}">
+                                    ${tipo_examen.nombreExamen} (Q.${tipo_examen.costoExamen})
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-auto my-1">
+                    <button type="submit" class="btn btn-primary">Agendar</button>
+                </div>
+            </form>
         </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Option 2
-            </label>
-        </div>
-        <div class="form-check-inline disabled">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Option 3
-            </label>
-        </div>
-
-
-        <h4>Selecciona el/los grupos de usuarios:</h4>
-        <input type="radio" name="opciones" value="multiples" id="multiples"> Multiples <br>
-
-        <div id="div1" style="display:none"> 
-            <textarea name="query1" rows="5" cols="150" class="panel-body" placeholder="Ingrese el query de restriccion"></textarea>
-        </div>
-
-        <input type="radio" name="opciones" value="individual" id="individual">Individual <br>
-
-        <div id="div2"  style="display:none"> 
-            <label for="ID">ID</label>
-            <input type="text" class="form-control " name="query" placeholder="Ingrese Id"/>
-        </div>
-
-
-        <script>
-            $(document).ready(function () {
-                $("#individual").click(function () {
-                    $("#div1").hide();
-                    $("#div2").show();
-
-                });
-
-                $("#multiples").click(function () {
-                    $("#div1").show();
-                    $("#div2").hide();
-
-                });
-            });
-        </script>
 
 
         <jsp:include page="/WEB-INF/Extras/extraJS.jsp"/>

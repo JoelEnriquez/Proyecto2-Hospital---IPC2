@@ -23,10 +23,10 @@ public class LoginModel {
             return "Paciente";
         }
         else if (codigo.substring(0, 3).equals("MED")) {
-            return "Paciente";
+            return "Medico";
         }
         else if (codigo.substring(0, 3).equals("LAB")) {
-            return "Paciente";
+            return "Laboratorista";
         }
         else if (codigo.substring(0, 3).equals("ADM")) {
             return "Admin";

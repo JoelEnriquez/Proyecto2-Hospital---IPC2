@@ -32,6 +32,15 @@ public class Examen {
     private String codigoMedico;
     private String codigoTipoExamen;
 
+    /**
+     * Constructor para insertar examenes con orden
+     * @param fechaCita
+     * @param horaCita
+     * @param requiereOrden
+     * @param codigoPaciente
+     * @param codigoMedico
+     * @param codigoTipoExamen 
+     */
     public Examen(Date fechaCita, Time horaCita, boolean requiereOrden, String codigoPaciente,
             String codigoMedico, String codigoTipoExamen) {
         this.fechaCita = fechaCita;
@@ -41,6 +50,24 @@ public class Examen {
         this.codigoMedico = codigoMedico;
         this.codigoTipoExamen = codigoTipoExamen;
     }
+
+    /**
+     * Constructor para insertar examenes sin orden
+     * @param fechaCita
+     * @param horaCita
+     * @param requiereOrden
+     * @param codigoPaciente
+     * @param codigoTipoExamen 
+     */
+    public Examen(Date fechaCita, Time horaCita, boolean requiereOrden, String codigoPaciente, String codigoTipoExamen) {
+        this.fechaCita = fechaCita;
+        this.horaCita = horaCita;
+        this.requiereOrden = requiereOrden;
+        this.codigoPaciente = codigoPaciente;
+        this.codigoTipoExamen = codigoTipoExamen;
+    }
+    
+    
 
     public Examen(int codigo, Date fechaCita, Time horaCita, boolean requiereOrden,
             String codigoPaciente, String codigoMedico, String codigoTipoExamen) {

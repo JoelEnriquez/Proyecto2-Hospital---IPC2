@@ -5,13 +5,24 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <%@include file="/WEB-INF/HeadTittle.html"%>
+        <jsp:include page="/WEB-INF/Extras/extraCSS.jsp"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
-    </body>
+        <jsp:include page="/WEB-INF/NavBars/NavBarMedico.jsp"/>
+
+    <CENTER>
+        <br/>
+        <div class="row align-items-center">
+            <div class="col">
+                <img src="${pageContext.request.contextPath}/resources/Doctor.png" alt="300">
+            </div>
+        </div>
+    </CENTER>
+    <jsp:include page="/WEB-INF/Extras/extraJS.jsp"/>
+</body>
 </html>

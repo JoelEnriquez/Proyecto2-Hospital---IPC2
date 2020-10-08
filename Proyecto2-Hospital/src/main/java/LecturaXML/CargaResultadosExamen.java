@@ -31,10 +31,12 @@ public class CargaResultadosExamen {
     private Connection conexion;
     private ArrayList<Integer> codigosExamenConOrden;
     private List<Element>listaResultados;
+    private String rutaPathAbsoluto;
 
-    public CargaResultadosExamen(Connection conexion,List<Element>listaResultados) {
+    public CargaResultadosExamen(Connection conexion,List<Element>listaResultados, String rutaPathAbsoluto) {
         this.conexion = conexion;
         this.listaResultados = listaResultados;
+        this.rutaPathAbsoluto = rutaPathAbsoluto;
     }
 
     public void setCodigosExamenConOrden(ArrayList<Integer> codigosExamenConOrden) {
@@ -61,12 +63,12 @@ public class CargaResultadosExamen {
             String archivoOrden = result.getChildTextTrim("ORDEN");
             InputStream inputOrden = null;
             if (!archivoOrden.equals("")) {
-                File orden = new File(archivoOrden);
+                File orden = new File(rutaPathAbsoluto+archivoOrden);
                 inputOrden = new FileInputStream(orden);
             }
             //Archivo de informe de resultado
             String archivoInforme = result.getChildTextTrim("INFORME");
-            File informe = new File(archivoInforme);
+            File informe = new File(rutaPathAbsoluto+archivoInforme);
             InputStream inputInforme = new FileInputStream(informe);
             
             Date fechaExamen = Date.valueOf(result.getChildTextTrim("FECHA"));

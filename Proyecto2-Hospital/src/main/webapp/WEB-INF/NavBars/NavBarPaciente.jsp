@@ -36,10 +36,13 @@
                         Examen Laboratorio
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Paciente/AgendarExamen.jsp">Agendar</a>
-                        <a class="dropdown-item" href="#">Ver examenes de un tipo</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorInfoExamen">Agendar</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControlInfoExamenesTipo">Ver examenes de un tipo</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorUltimosExamenes">Ultimos examenes</a>
                     </div>
+                </li>
+                <li class="btn btn-secundary">
+                    <a href="${pageContext.request.contextPath}/ControlLogOut">Cerrar Sesion</a>
                 </li>
             </ul>
             <span class="navbar-text">

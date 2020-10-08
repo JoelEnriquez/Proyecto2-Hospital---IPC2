@@ -99,9 +99,10 @@ public class CargaArchivo extends HttpServlet {
         }
         
         //Se ingresa el path donde se van a guardar los archivos
-        String pathAbsoluteXML = "/home/joel/Uploads/DataUpload/"+rutaXML;  
+        String pathAbsolut = "/home/joel/Uploads/DataUpload/";
+        String pathAbsoluteXML = pathAbsolut+rutaXML;  
         Connection conexion = Conexion.getConexion();
-        LecturaXML lecturaXML = new LecturaXML(pathAbsoluteXML, conexion);
+        LecturaXML lecturaXML = new LecturaXML(pathAbsoluteXML,pathAbsolut, conexion);
         lecturaXML.leerXML();
         
         //Comprobar carga de datos
