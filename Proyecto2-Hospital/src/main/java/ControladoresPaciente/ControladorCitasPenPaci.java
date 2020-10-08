@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControlPacientes;
+package ControladoresPaciente;
 
-import ModelosComunes.ModelHistorialMedico;
+import ModelosComunes.ModelCitasPendientes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,32 +19,29 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "ControlHistorialMP", urlPatterns = {"/ControlHistorialMP"})
-public class ControlHistorialMP extends HttpServlet {
+@WebServlet(name = "ControladorCitasPenPaci", urlPatterns = {"/ControladorCitasPenPaci"})
+public class ControladorCitasPenPaci extends HttpServlet {
 
-    private ModelHistorialMedico historialMM = new ModelHistorialMedico();    
+    private ModelCitasPendientes citasPendientes = new ModelCitasPendientes();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try {
             String codigoPaciente = request.getSession().getAttribute("codigo").toString();
             if (codigoPaciente!=null) {
                 //Se obtienen las consultas y examenes del Paciente en base a su codigo
-                request.setAttribute("examenes", historialMM.obtenerExamenesEspecificos(codigoPaciente));
-                request.setAttribute("consultas", historialMM.obtenerCitasMedicasEspecificos(codigoPaciente));
-                RequestDispatcher requestD = request.getRequestDispatcher("/Paciente/HistorialMedicoPaciente.jsp");
+                request.setAttribute("consultasPen", citasPendientes.citasPendientesPaciente(codigoPaciente));
+
+                RequestDispatcher requestD = request.getRequestDispatcher("/Paciente/ConsultasPendientes.jsp");
                 requestD.forward(request, response);
             }
-        } catch (IOException | ServletException e) {
-            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            
         }
     }
 
     
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

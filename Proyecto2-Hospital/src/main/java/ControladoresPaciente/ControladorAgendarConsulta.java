@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControlPacientes;
+package ControladoresPaciente;
 
 import EntidadesAsignacion.Especialidad;
 import EntidadesHospital.CitaMedico;

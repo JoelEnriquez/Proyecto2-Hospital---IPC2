@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControlComunes;
+package ControladoresComunes;
 
 import Modelos.AgendarExamenModel;
 import ModelosComunes.ExamenModel;

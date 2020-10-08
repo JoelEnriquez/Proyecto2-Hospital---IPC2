@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControlMedico;
+package ControladoresMedico;
 
-import ModelMedico.ConsultasAgendadasIntervalo;
+import Modelos.PacienteModel;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,24 +20,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "CitasAgendadas", urlPatterns = {"/CitasAgendadas"})
-public class CitasAgendadas extends HttpServlet {
+@WebServlet(name = "PacientesMayorInformes", urlPatterns = {"/PacientesMayorInformes"})
+public class PacientesMayorInformes extends HttpServlet {
 
-    private ConsultasAgendadasIntervalo consultas = new ConsultasAgendadasIntervalo();
-    
+   private PacienteModel paciente = new PacienteModel();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String codigoMedico = request.getSession().getAttribute("codigo").toString();
         Date fecha1 = Date.valueOf(request.getParameter("intervalo_1"));
         Date fecha2 = Date.valueOf(request.getParameter("intervalo_2"));
-        
-        request.setAttribute("list_consultas", consultas.listaCitasIntervalo(codigoMedico, fecha1, fecha2));
-        request.getRequestDispatcher("/Medico/CitasAgendadasIntervalo.jsp").forward(request, response);
+        if (fecha1.compareTo(fecha2)>0) {
+            request.setAttribute("wrong_time", true);
+        }
+        else{
+        request.setAttribute("list_pacientes", paciente.pacientesMasInformes(request.getSession().getAttribute("codigo").toString(), fecha1, fecha2));
+        }
+        request.getRequestDispatcher("/Medico/PacientesMayorCantidadInformes.jsp").forward(request, response);
     }
 
-    
-    
-    
+
 }

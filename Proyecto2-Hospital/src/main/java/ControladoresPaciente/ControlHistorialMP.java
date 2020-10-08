@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControlPacientes;
+package ControladoresPaciente;
 
-import ModelosComunes.ModelCitasPendientes;
+import ModelosComunes.ModelHistorialMedico;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,29 +19,32 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "ControladorCitasPenPaci", urlPatterns = {"/ControladorCitasPenPaci"})
-public class ControladorCitasPenPaci extends HttpServlet {
+@WebServlet(name = "ControlHistorialMP", urlPatterns = {"/ControlHistorialMP"})
+public class ControlHistorialMP extends HttpServlet {
 
-    private ModelCitasPendientes citasPendientes = new ModelCitasPendientes();
+    private ModelHistorialMedico historialMM = new ModelHistorialMedico();    
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         try {
             String codigoPaciente = request.getSession().getAttribute("codigo").toString();
             if (codigoPaciente!=null) {
                 //Se obtienen las consultas y examenes del Paciente en base a su codigo
-                request.setAttribute("consultasPen", citasPendientes.citasPendientesPaciente(codigoPaciente));
-
-                RequestDispatcher requestD = request.getRequestDispatcher("/Paciente/ConsultasPendientes.jsp");
+                request.setAttribute("examenes", historialMM.obtenerExamenesEspecificos(codigoPaciente));
+                request.setAttribute("consultas", historialMM.obtenerCitasMedicasEspecificos(codigoPaciente));
+                RequestDispatcher requestD = request.getRequestDispatcher("/Paciente/HistorialMedicoPaciente.jsp");
                 requestD.forward(request, response);
             }
-        } catch (Exception e) {
-            
+        } catch (IOException | ServletException e) {
+            e.printStackTrace(System.out);
         }
     }
 
     
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControlPacientes;
+package ControladoresAdmin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "ControladorPaciente", urlPatterns = {"/ControladorPaciente"})
-public class ControladorPaciente extends HttpServlet {
+@WebServlet(name = "CrearLaboratoristaControl", urlPatterns = {"/CrearLaboratoristaControl"})
+public class CrearLaboratoristaControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class ControladorPaciente extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorPaciente</title>");            
+            out.println("<title>Servlet CrearLaboratoristaControl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorPaciente at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CrearLaboratoristaControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

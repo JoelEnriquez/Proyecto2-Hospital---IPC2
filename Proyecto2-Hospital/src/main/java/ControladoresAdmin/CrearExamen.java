@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControlMedico;
+package ControladoresAdmin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,13 +17,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author joel
  */
-@WebServlet(name = "AtenderConsulta", urlPatterns = {"/AtenderConsulta"})
-public class AtenderConsulta extends HttpServlet {
+@WebServlet(name = "CrearExamen", urlPatterns = {"/CrearExamen"})
+public class CrearExamen extends HttpServlet {
 
     
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+    }
+
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
     }
