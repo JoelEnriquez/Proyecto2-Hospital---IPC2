@@ -31,6 +31,7 @@ public class Medico extends Persona {
     private Time horaFin;
     private String numeroColegiado;
     private Date fechaInicioHospital;
+    private String nombreEspecialidad;
 
     public Medico(Time horaInicio, Time horaFin, String numeroColegiado,
             Date fechaInicioHospital, String codigo, String nombre,String DPI,
@@ -73,5 +74,15 @@ public class Medico extends Persona {
     public void setFechaInicioHospital(Date fechaInicioHospital) {
         this.fechaInicioHospital = fechaInicioHospital;
     }
+
+    public String getNombreEspecialidad() {
+        return nombreEspecialidad;
+    }
+
+    public void setNombreEspecialidad(String nombreEspecialidad) {
+        this.nombreEspecialidad = nombreEspecialidad;
+    }
+    
+    
 
 }

@@ -26,8 +26,8 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorCitasPenPaci">Visualizar citas</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Paciente/AgendarConsulta.jsp">Agendar/Info Medicos</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ConsultasMedicoEspe.jsp">Consultas con un medico</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorEspecialidades">Agendar/Info Medicos</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Paciente/ConsultasMedicoEspecifico.jsp">Consultas con un medico</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorUltimasConsultas">Ultimas consultas</a>
                     </div>
                 </li>
@@ -36,7 +36,7 @@
                         Examen Laboratorio
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Agendar</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Paciente/AgendarExamen.jsp">Agendar</a>
                         <a class="dropdown-item" href="#">Ver examenes de un tipo</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/ControladorUltimosExamenes">Ultimos examenes</a>
                     </div>

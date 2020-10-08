@@ -5,8 +5,17 @@
  */
 package ControlPacientes;
 
+import EntidadesAsignacion.Especialidad;
+import EntidadesHospital.CitaMedico;
+import Modelos.AgendarCitaModel;
+import Modelos.EspecialidadModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,75 +23,60 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Se redirige la informacion a comprobar si es exitosa, y se realiza la
+ * consulta.
  *
  * @author joel
  */
 @WebServlet(name = "ControladorAgendarConsulta", urlPatterns = {"/ControladorAgendarConsulta"})
 public class ControladorAgendarConsulta extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorAgendarConsulta</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorAgendarConsulta at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    private AgendarCitaModel agendarCitaModel = new AgendarCitaModel();
+    private EspecialidadModel especialidadModel = new EspecialidadModel();
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm"); //Formato correcto para la hora
+
+        String codigoPaciente = request.getSession().getAttribute("nombre").toString();
+        String codigoMedico;
+        String hCita = request.getParameter("horaCita");
+        String fCita = request.getParameter("fechaCita");
+        String idTipoConsulta = request.getParameter("tipo_consulta");
+
+        Date fechaCita = null;
+        Time horaCita = null;
+
+        if (request.getSession().getAttribute("codigo_medico") == null) {
+            request.setAttribute("codigoIncorrecto", true);
+        } else {
+            codigoMedico = request.getSession().getAttribute("codigo_medico").toString();
+
+            try {
+                fechaCita = Date.valueOf(fCita);
+            } catch (Exception e) {
+                request.setAttribute("fail_consulta", true);
+                e.printStackTrace(System.out);
+            }
+
+            try {
+                //Conversion del tiempo
+                java.util.Date dateAuxTime = (java.util.Date)format.parse(hCita);
+                horaCita = new Time(dateAuxTime.getTime());
+            } catch (ParseException e) {
+                System.out.println("No se pudo concretar la conversion");
+                request.setAttribute("fail_consulta", true);
+            }
+            Especialidad especialidadAux = especialidadModel.obtenerPorId(idTipoConsulta);
+            agendarCitaModel.crearCita(new CitaMedico(codigoPaciente, codigoMedico, especialidadAux.getNombre() , idTipoConsulta, especialidadAux.getCostoConsulta(), fechaCita, horaCita));
+            
+            request.setAttribute("sucess_consulta", true);
+        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Paciente/AgendarConsulta.jsp");
+        requestDispatcher.forward(request, response);
+
+    }
 
 }
