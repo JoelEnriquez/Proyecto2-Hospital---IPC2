@@ -25,7 +25,7 @@
                         <a class="dropdown-item" href="#">Editar</a>
                         <a class="dropdown-item" href="#">Listado Medicos</a>
                         <a class="dropdown-item" href="#">Ingresos por medico</a>
-                        <a class="dropdown-item" href="#">Medicos con mas informes</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/Admin/MedicosMayoresInformes.jsp">Medicos con mas informes</a>
                         <a class="dropdown-item" href="#">Medicos con menos citas</a>
                     </div>
                 </li>

@@ -27,7 +27,7 @@
         <br>
         <c:if test="${no_medico_exist!=null}"> <p class="alert alert-danger"> Por favor, elija un codigo existente </p></c:if>
         <div class="main mx-5" style="flex:2;">
-            <div class="flexbox-container" style="display:flex;">
+            <div class="flexbox-container" style="flex:2;">
 
             <form action="${pageContext.request.contextPath}/ControladorConsultasMedicoEspe" method="GET">
                 <h4>Intervalo de tiempo</h4>

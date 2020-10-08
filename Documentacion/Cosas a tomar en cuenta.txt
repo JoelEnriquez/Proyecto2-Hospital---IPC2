@@ -1,0 +1,2 @@
+Se tomo el path absoluto del ordenador donde se programo. Por lo que si se quiere cargar en otro ordenarodor, es necesario cambiar el path en la CargaArchivo del paquete Controladores Inicio
+Si se desprecian archivos de carga que esten en el formato XML, no se ingresaran a la DB
